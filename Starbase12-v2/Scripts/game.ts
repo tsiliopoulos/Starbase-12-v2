@@ -13,6 +13,7 @@
 /// <reference path="utility/oppositeangle.ts" />
 /// <reference path="interfaces/iobject.ts" />
 /// <reference path="objects/gameobject.ts" />
+/// <reference path="objects/button.ts" />
 /// <reference path="objects/hud.ts" />
 /// <reference path="objects/crosshair.ts" />
 /// <reference path="objects/explosion.ts" />
@@ -29,6 +30,9 @@
 /// <reference path="managers/particleexplosion.ts" />
 /// <reference path="managers/beamweapon.ts" />
 /// <reference path="managers/collision.ts" />
+/// <reference path="states/gameover.ts" />
+/// <reference path="states/play.ts" />
+/// <reference path="states/menu.ts" />
 
 var stage: createjs.Stage;
 var canvas;
@@ -60,23 +64,47 @@ var klingon: managers.Klingon;
 // Game Container
 var game: createjs.Container;
 
+// Game State Variables
+var currentState: number;
+var currentStateFunction;
+var gamePlaying: boolean = false;
+var startButton: objects.Button;
+
 // Preload Assets
 function preload(): void {
     managers.Assets.init();
     managers.Assets.loader.addEventListener("complete", init);
-}
 
-// Initialize Game
-function init(): void {
     canvas = config.ARCADE_CANVAS;
-    
+
     stage = new createjs.Stage(canvas);
-    //stage.enableMouseOver(20);
+    stage.enableMouseOver(20);
 
     createjs.Ticker.setFPS(config.FPS);
     createjs.Ticker.addEventListener("tick", gameLoop);
 
-    gameStart();
+    // Show the Start Screen
+    showStartScreen();
+}
+
+// Initialize Game
+function init(): void {
+    // Add Start Button after Loader is complete
+    startButton = new objects.Button(config.MIDDLE_X, 360, "startButton");
+    game.addChild(startButton);
+
+    // Don't Start the game until startButton is pressed
+    startButton.on("click", function (e) {
+
+        stage.removeChild(game);
+        //soundtrack.stop();
+        game.removeAllChildren();
+        game.removeAllEventListeners();
+        currentState = config.MENU_STATE;
+
+        gamePlaying = true;
+        changeState(currentState);
+    });
 }
 
 // Main Game Loop
@@ -84,29 +112,10 @@ function gameLoop(event) {
     // Start counting for FPS stats
     this.stats.begin();
 
-    // Update Starbase
-    starbase.update();
-    starbase.integrityLabel.updateCache();
-    starbase.updateCache();
-
-    // Update Player
-    player.update();
-    player.integrityLabel.updateCache();
-    player.updateCache();
-
-    // Update Managers
-    klingon.update();
-    beamWeapon.update();
-    particleExplosion.update();
-    collision.update();
-
-    // Update Crosshair
-    crosshair.update();
-    crosshair.updateCache();
-
-    // Update HUD
-    hud.update();
-
+    if (gamePlaying == true) {
+        currentStateFunction();
+    }
+    
     stage.update(event);
 
     // Stop counting Stats
@@ -123,67 +132,50 @@ function setupStats() {
     document.body.appendChild(stats.domElement);
 }
 
-
-
 // Main Game Function
-function gameStart(): void {
+function showStartScreen(): void {
+    var screenFont: string = "100px startrek";
     setupStats();
-
-    gameTile = new managers.GameTile();
-    gameTile.init();
 
     // the Main object container
     game = new createjs.Container();
 
-    //stage.cursor = "none";
+    // Add Mail Pilot Label
+    var TitleLabel = new createjs.Text("Starbase 12", screenFont, config.FONT_COLOUR);
+    TitleLabel.regX = TitleLabel.getBounds().width * 0.5;
+    TitleLabel.regY = TitleLabel.getBounds().height * 0.5;
+    TitleLabel.x = config.MIDDLE_X;
+    TitleLabel.y = 120;
+    game.addChild(TitleLabel);
 
-    background = new createjs.Bitmap(managers.Assets.loader.getResult("background"));
-    game.addChildAt(background, layer.BACKGROUND);
-    background.cache(0, 0, config.WIDTH, config.HEIGHT);
-
-    hud = new objects.Hud();
-    game.addChildAt(hud, layer.HUD);
-
-    // Create the starbase
-    starbase = new objects.Starbase();
-    game.addChild(starbase);
-    game.addChild(starbase.integrityLabel);
-    starbase.integrityLabel.shadow = new createjs.Shadow('#FFF', 2, 2, 8);
-    starbase.integrityLabel.filters = [colorFilter];
-    
-    starbase.integrityLabel.cache(0, 0, starbase.integrityLabel.getBounds().width, starbase.integrityLabel.getBounds().height);
-    starbase.cache(0, 0, starbase.width, starbase.height);
-    gameTile.getLocation(starbase);
-
-    // Create player
-    player = new objects.Player();
-    game.addChild(player);
-    game.addChild(player.integrityLabel);
-    player.integrityLabel.shadow = new createjs.Shadow('#FFF', 2, 2, 8);
-    player.integrityLabel.filters = [colorFilter];
-    
-    player.integrityLabel.cache(0, 0, player.integrityLabel.getBounds().width, player.integrityLabel.getBounds().height);
-    player.cache(0, 0, player.width, player.height);
-    gameTile.getLocation(player);
-
-
-    // Instantiate Enemy Manager and Create enemies
-    klingon = new managers.Klingon();
-    klingon.spawn();
-    
-    // Create the Crosshair
-    crosshair = new objects.Crosshair();
-    game.addChild(crosshair);
-    crosshair.cache(stage.mouseX, stage.mouseY, crosshair.width, crosshair.height);
-
-    // Instantiate the Beamweapon Manager
-    beamWeapon = new managers.BeamWeapon();
-
-    // Manage Explosions
-    particleExplosion = new managers.ParticleExplosion();
-
-    // Manage Collisions
-    collision = new managers.Collision();
-    
     stage.addChild(game);
+}
+
+function changeState(state: number): void {
+    // Launch Various "screens"
+    switch (state) {
+        case config.MENU_STATE:
+            // instantiate menu screen
+            currentStateFunction = states.MenuState;
+            states.Menu();
+            break;
+
+        case config.PLAY_STATE:
+            // instantiate play screen
+            currentStateFunction = states.PlayState;
+            states.Play();
+            break;
+
+        case config.GAME_OVER_STATE:
+            // instantiate game over screen
+            currentStateFunction = states.GameOverState;
+            states.GameOver();
+            break;
+
+        case config.INSTRUCTION_STATE:
+            /*currentStateFunction = states.InstructionState;
+            // instantiate game over screen
+            states.Instructions();*/
+            break;
+    }
 }

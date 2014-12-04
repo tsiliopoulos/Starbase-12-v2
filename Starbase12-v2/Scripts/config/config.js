@@ -70,5 +70,11 @@
     config.KLINGON_TURN_RATE = 0.6;
     config.STARBASE_TURN_RATE = 0.1;
     config.PLAYER_TURN_RATE = 1;
+
+    // State Constants
+    config.MENU_STATE = 0;
+    config.PLAY_STATE = 1;
+    config.GAME_OVER_STATE = 2;
+    config.INSTRUCTION_STATE = 3;
 })(config || (config = {}));
 //# sourceMappingURL=config.js.map

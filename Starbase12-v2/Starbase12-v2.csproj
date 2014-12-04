@@ -64,16 +64,19 @@
     <Content Include="assets\fonts\StarTrek.png" />
     <Content Include="assets\fonts\startrek.svg" />
     <Content Include="assets\images\atlas.png" />
+    <Content Include="assets\images\backButton.png" />
     <Content Include="assets\images\explosion.png" />
     <Content Include="assets\images\hexagon.jpg" />
     <Content Include="assets\images\hud.png" />
     <Content Include="assets\images\hudLS.png" />
     <Content Include="assets\images\hudRS.png" />
+    <Content Include="assets\images\instructionsButton.png" />
     <Content Include="assets\images\klingon.png" />
     <Content Include="assets\images\klingonBotLeft.png" />
     <Content Include="assets\images\klingonBotRight.png" />
     <Content Include="assets\images\klingonTopLeft.png" />
     <Content Include="assets\images\klingonTopRight.png" />
+    <Content Include="assets\images\menuScreen.png" />
     <Content Include="assets\images\particle_base.png" />
     <Content Include="assets\images\photon animation\photon1.png" />
     <Content Include="assets\images\photon animation\photon10.png" />
@@ -87,6 +90,8 @@
     <Content Include="assets\images\photon animation\photon7.png" />
     <Content Include="assets\images\photon animation\photon8.png" />
     <Content Include="assets\images\photon animation\photon9.png" />
+    <Content Include="assets\images\playAgainButton.png" />
+    <Content Include="assets\images\playButton.png" />
     <Content Include="assets\images\ship.png" />
     <Content Include="assets\images\ShipBotLeft.png" />
     <Content Include="assets\images\ShipBotLeftRed.png" />
@@ -140,6 +145,7 @@
     <Content Include="assets\images\startbaseTopRightRed.png" />
     <Content Include="assets\images\startbaseTopRightYellow.png" />
     <Content Include="assets\images\startbaseYellow.png" />
+    <Content Include="assets\images\startButton.png" />
     <Content Include="assets\sounds\disruptor.mp3" />
     <Content Include="assets\sounds\phaser.mp3" />
     <Content Include="assets\sounds\photon.mp3" />
@@ -175,9 +181,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\states\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\config\config.ts" />
     <TypeScriptCompile Include="Scripts\config\controls.ts" />
@@ -199,6 +203,7 @@
     <TypeScriptCompile Include="Scripts\managers\klingon.ts" />
     <TypeScriptCompile Include="Scripts\managers\particleexplosion.ts" />
     <TypeScriptCompile Include="Scripts\managers\gametile.ts" />
+    <TypeScriptCompile Include="Scripts\objects\button.ts" />
     <TypeScriptCompile Include="Scripts\objects\disruptor.ts" />
     <TypeScriptCompile Include="Scripts\objects\enemy.ts" />
     <TypeScriptCompile Include="Scripts\objects\phaser.ts" />
@@ -213,6 +218,9 @@
     <TypeScriptCompile Include="Scripts\objects\shield.ts" />
     <TypeScriptCompile Include="Scripts\objects\starbase.ts" />
     <TypeScriptCompile Include="Scripts\libs\gamepad.d.ts" />
+    <TypeScriptCompile Include="Scripts\states\gameover.ts" />
+    <TypeScriptCompile Include="Scripts\states\menu.ts" />
+    <TypeScriptCompile Include="Scripts\states\play.ts" />
     <TypeScriptCompile Include="Scripts\utility\distance.ts" />
     <TypeScriptCompile Include="Scripts\utility\drawdebugrect.ts" />
     <TypeScriptCompile Include="Scripts\utility\getarcstring.ts" />

@@ -114,6 +114,11 @@ var managers;
                             break;
                         case "ship":
                             this.playerAlive = false;
+                            stage.removeChild(game);
+                            game.removeAllChildren();
+                            game.removeAllEventListeners();
+                            currentState = config.GAME_OVER_STATE;
+                            changeState(currentState);
                             break;
                     }
                 }
