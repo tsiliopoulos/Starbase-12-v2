@@ -12,6 +12,8 @@
     config.MIDDLE_X = 400;
     config.MIDDLE_Y = 300;
     config.BORDER = 31;
+    config.LOADER_WIDTH = 400;
+    config.LOADER_HEIGHT = 40;
 
     // Tile Constants
     config.TILE_WIDTH = 146;
@@ -42,12 +44,14 @@
     config.PHOTON_NUM = 8;
     config.INTEGRITY = 100;
     config.ARC_COUNT = 4;
-    config.ENEMY_COUNT = 1;
+    config.ENEMY_COUNT = 10;
 
     // Colour Constants
     config.GREEN = "#0F0";
     config.YELLOW = "#FF0";
     config.RED = "#F00";
+    config.WHITE = "#FFF";
+    config.BLACK = "#000";
 
     // Damage Constants
     config.PHOTON_DAMAGE = 50;

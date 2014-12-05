@@ -46,6 +46,7 @@
         // Menu Screen
         menuScreen = new createjs.Bitmap(managers.Assets.loader.getResult("menuScreen"));
         game.addChild(menuScreen);
+        menuScreen.alpha = 0.9;
 
         // Display Game Over
         gameNameLabel = new objects.Label(config.MIDDLE_X, config.MIDDLE_Y, "Starbase 12");

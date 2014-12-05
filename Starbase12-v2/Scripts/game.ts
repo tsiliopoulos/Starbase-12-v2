@@ -3,6 +3,7 @@
 /// <reference path="config/layer.ts" />
 /// <reference path="config/controls.ts" />
 /// <reference path="managers/asset.ts" />
+/// <reference path="objects/loaderbar.ts" />
 /// <reference path="managers/gametile.ts" />
 /// <reference path="utility/showlocation.ts" />
 /// <reference path="utility/drawdebugrect.ts" />
@@ -37,6 +38,8 @@
 var stage: createjs.Stage;
 var canvas;
 var stats: Stats;
+var loaderBar: objects.LoaderBar;
+var percentLoaded: number = 0;
 
 // Filters
 var colorFilter: createjs.ColorFilter = new createjs.ColorFilter(1, 1, 0);
@@ -73,6 +76,7 @@ var startButton: objects.Button;
 // Preload Assets
 function preload(): void {
     managers.Assets.init();
+    managers.Assets.loader.addEventListener("progress", handleProgress);
     managers.Assets.loader.addEventListener("complete", init);
 
     canvas = config.ARCADE_CANVAS;
@@ -87,10 +91,20 @@ function preload(): void {
     showStartScreen();
 }
 
+// Show Loader Bar Progress
+function handleProgress(event: ProgressEvent) {
+    percentLoaded = event.loaded;
+    loaderBar.update();
+    stage.update();
+}
+
+
 // Initialize Game
 function init(): void {
+    managers.Assets.loadSprites();
+
     // Add Start Button after Loader is complete
-    startButton = new objects.Button(config.MIDDLE_X, 360, "startButton");
+    startButton = new objects.Button(config.MIDDLE_X, 400, "startButton");
     game.addChild(startButton);
 
     // Don't Start the game until startButton is pressed
@@ -140,13 +154,16 @@ function showStartScreen(): void {
     // the Main object container
     game = new createjs.Container();
 
-    // Add Mail Pilot Label
+    // Add Starbase 12 Label
     var TitleLabel = new createjs.Text("Starbase 12", screenFont, config.FONT_COLOUR);
     TitleLabel.regX = TitleLabel.getBounds().width * 0.5;
     TitleLabel.regY = TitleLabel.getBounds().height * 0.5;
     TitleLabel.x = config.MIDDLE_X;
     TitleLabel.y = 120;
     game.addChild(TitleLabel);
+
+    loaderBar = new objects.LoaderBar(config.MIDDLE_X, config.MIDDLE_Y, config.FONT_COLOUR, config.WHITE);
+    game.addChild(loaderBar);
 
     stage.addChild(game);
 }

@@ -85,6 +85,7 @@ module managers {
         private _hullCollider(attackObject: objects.GameObject, defendObject: objects.GameObject, defenderIndex: number) {
             var attackerPosition = attackObject.location;
             if (utility.distance(attackerPosition, defendObject.location) < (attackObject.radius + (defendObject.radius * 0.7))) {
+                createjs.Sound.play("hull");
                 var hullString: string = defendObject.name;
                 if (attackObject.name == "tracer") {
                     var damage = attackObject.damage * (hud.phaserEnergy * 0.01);
@@ -108,6 +109,7 @@ module managers {
                     if ((defendObject.integrity > 1) && (defendObject.integrity < 35)) {
                         hullString += "R";
                         defendObject.gotoAndPlay(hullString);
+                        createjs.Sound.play("redAlert", createjs.Sound.INTERRUPT_NONE, 0, 0, 0, 1);
                     }
                 }
                 if (defendObject.integrity < 1) {

@@ -11,6 +11,8 @@
     export var MIDDLE_X: number = 400;
     export var MIDDLE_Y: number = 300;
     export var BORDER: number = 31;
+    export var LOADER_WIDTH: number = 400;
+    export var LOADER_HEIGHT: number = 40;
 
     // Tile Constants
     export var TILE_WIDTH: number = 146;
@@ -41,12 +43,14 @@
     export var PHOTON_NUM: number = 8;
     export var INTEGRITY: number = 100;
     export var ARC_COUNT: number = 4;
-    export var ENEMY_COUNT: number = 1;
+    export var ENEMY_COUNT: number = 10;
 
     // Colour Constants
     export var GREEN: string = "#0F0";
     export var YELLOW: string = "#FF0";
     export var RED: string = "#F00";
+    export var WHITE: string = "#FFF";
+    export var BLACK: string = "#000";
 
     // Damage Constants
     export var PHOTON_DAMAGE: number = 50;
