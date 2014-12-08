@@ -18,6 +18,7 @@
 /// <reference path="objects/hud.ts" />
 /// <reference path="objects/crosshair.ts" />
 /// <reference path="objects/explosion.ts" />
+/// <reference path="objects/flame.ts" />
 /// <reference path="objects/label.ts" />
 /// <reference path="objects/shield.ts" />
 /// <reference path="objects/player.ts" />
@@ -29,6 +30,7 @@
 /// <reference path="objects/photon.ts" />
 /// <reference path="managers/klingon.ts" />
 /// <reference path="managers/particleexplosion.ts" />
+/// <reference path="managers/particleflame.ts" />
 /// <reference path="managers/beamweapon.ts" />
 /// <reference path="managers/collision.ts" />
 /// <reference path="states/gameover.ts" />
@@ -53,7 +55,9 @@ var crosshair: objects.Crosshair;
 
 // Game Arrays
 var emitters: createjs.Container[] = [];
+var flameBursts: createjs.Container[] = [];
 var explosions: objects.Explosion[] = [];
+var flames: objects.Flame[] = [];
 var gameTiles: createjs.Point[] = [];
 var enemies: objects.Enemy[] = [];
 
@@ -62,6 +66,7 @@ var gameTile: managers.GameTile;
 var beamWeapon: managers.BeamWeapon;
 var collision: managers.Collision;
 var particleExplosion: managers.ParticleExplosion;
+var particleFlame: managers.ParticleFlame;
 var klingon: managers.Klingon;
 
 // Game Container
@@ -72,6 +77,11 @@ var currentState: number;
 var currentStateFunction;
 var gamePlaying: boolean = false;
 var startButton: objects.Button;
+
+// Game Music Variables
+var battleSound: createjs.SoundInstance;
+var gameOverSound: createjs.SoundInstance;
+var menuSound: createjs.SoundInstance;
 
 // Preload Assets
 function preload(): void {

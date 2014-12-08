@@ -1,10 +1,12 @@
 var states;
 (function (states) {
     function GameOverState() {
+        particleFlame.update();
     }
     states.GameOverState = GameOverState;
     // Restart Game when Try Again Button is clicked
     function playAgainClicked(event) {
+        gameOverSound.stop();
         stage.removeChild(game);
         game.removeAllChildren();
         game.removeAllEventListeners();
@@ -12,24 +14,6 @@ var states;
         changeState(currentState);
     }
     states.playAgainClicked = playAgainClicked;
-    // Read High Score from File
-    /*export function readHighScore() {
-        var xhr: XMLHttpRequest = new XMLHttpRequest();
-
-        xhr.open("post", "Scripts/scores.txt", false);
-        xhr.send(null);
-        scoreboard.highScore = parseInt(xhr.responseText);
-    }*/
-    // Write High Score to File via PHP
-    /*export function writeHighScore() {
-        var hiScore = new FormData();
-
-        hiScore.append("data", scoreboard.score.toString());
-        scoreboard.highScore = scoreboard.score;
-        var xhr: XMLHttpRequest = new XMLHttpRequest();
-        xhr.open("post", "Scripts/writeScore.php", true);
-        xhr.send(hiScore);
-    }*/
     // Game Over Scene
     function GameOver() {
         var gameOverLabel;
@@ -39,18 +23,24 @@ var states;
         var highScore;
         var highScoreString = "";
         var playAgainButton;
+        var gameOverScreen;
         // Enable Mouse Events
         stage.enableMouseOver(20);
         // Declare new Game Container
         game = new createjs.Container();
+        // Play Game Over Music
+        gameOverSound = createjs.Sound.play("gameOverMusic", createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        // Display Game Over Screen
+        gameOverScreen = new createjs.Bitmap(managers.Assets.loader.getResult("gameOverScreen"));
+        game.addChild(gameOverScreen);
+        // Manage Explosions
+        particleFlame = new managers.ParticleFlame();
+        // Add Flames
+        particleFlame.addFlame(449, 486);
+        particleFlame.addFlame(579, 467);
+        particleFlame.addFlame(678, 404);
         // Show Cursor
-        //stage.cursor = "default";
-        // Check if player beat high score
-        //readHighScore();
-        /*if (scoreboard.score > scoreboard.highScore) {
-            writeHighScore();
-        }
-        highScoreString = hud.highScore.toString();*/
+        stage.cursor = "default";
         // Display Game Over
         gameOverLabel = new objects.Label(config.MIDDLE_X, 100, "Game Over");
         gameOverLabel.fontSize(70);

@@ -10,19 +10,24 @@ var managers;
             var assetManifest = [
                 { id: "textureAtlas", src: "assets/images/atlas.png" },
                 { id: "fontAtlas", src: "assets/fonts/fontAtlas.png" },
-                { id: "particle", src: "assets/images/particle_base.png" },
+                { id: "explosionParticle", src: "assets/images/explosionParticle.png" },
+                { id: "flameParticle", src: "assets/images/flameParticle.png" },
                 { id: "background", src: "assets/images/hexagon.jpg" },
                 { id: "hudLS", src: "assets/images/hudLS.png" },
                 { id: "hudRS", src: "assets/images/hudRS.png" },
                 { id: "menuScreen", src: "assets/images/menuScreen.png" },
                 { id: "introScreen", src: "assets/images/introScreen.png" },
+                { id: "gameOverScreen", src: "assets/images/gameOverScreen.png" },
                 { id: "phaser", src: "assets/sounds/phaser.mp3" },
                 { id: "disruptor", src: "assets/sounds/disruptor.mp3" },
                 { id: "shield", src: "assets/sounds/shield.mp3" },
                 { id: "photon", src: "assets/sounds/photon.mp3" },
                 { id: "explosion", src: "assets/sounds/smallexplosion.mp3" },
                 { id: "hull", src: "assets/sounds/hullHit.mp3" },
-                { id: "redAlert", src: "assets/sounds/redAlert.mp3" }
+                { id: "redAlert", src: "assets/sounds/redAlert.mp3" },
+                { id: "menuMusic", src: "assets/sounds/menu.mp3" },
+                { id: "battleMusic", src: "assets/sounds/battle.mp3" },
+                { id: "gameOverMusic", src: "assets/sounds/gameover.mp3" }
             ];
             createjs.Sound.initializeDefaultPlugins();
             createjs.Sound.alternateExtensions = ["mp3"];

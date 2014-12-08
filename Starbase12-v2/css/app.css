@@ -30,6 +30,6 @@ canvas {
         display: block;
         width: 800px;
         background: #808080;
-        border: dashed 1px black;
-        border-radius: 6px;
+        border: solid 1px #808080;
+        border-radius: 15px;
     }

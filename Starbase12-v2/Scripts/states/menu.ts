@@ -5,8 +5,8 @@
 
     // Button Event Handlers
     export function instructionsButtonClicked(event: MouseEvent) {
+        menuSound.stop();
         stage.removeChild(game);
-        //soundtrack.stop();
         game.removeAllChildren();
         game.removeAllEventListeners();
         currentState = config.INSTRUCTION_STATE;
@@ -14,8 +14,8 @@
     }
 
     export function playButtonClicked(event: MouseEvent) {
+        menuSound.stop();
         stage.removeChild(game);
-        //soundtrack.stop();
         game.removeAllChildren();
         game.removeAllEventListeners();
         currentState = config.PLAY_STATE;
@@ -36,10 +36,10 @@
         // Declare new Game Container
         game = new createjs.Container();
 
-        //soundtrack = createjs.Sound.play('soundtrack', createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
+        menuSound = createjs.Sound.play("menuMusic", createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         // Show Cursor
-        //stage.cursor = "default";
+        stage.cursor = "default";
 
         // Menu Screen
         menuScreen = new createjs.Bitmap(managers.Assets.loader.getResult("menuScreen"));

@@ -20,7 +20,7 @@ module states {
 
         // Update Crosshair
         crosshair.update();
-        crosshair.updateCache();
+        //crosshair.updateCache();
 
         // Update HUD
         hud.update();
@@ -36,6 +36,9 @@ module states {
 
         // the Main object container
         game = new createjs.Container();
+
+        // Play battle music
+        battleSound = createjs.Sound.play("battleMusic", createjs.Sound.INTERRUPT_NONE, 0, 0, -1, 1, 0);
 
         //stage.cursor = "none";
 
@@ -76,7 +79,7 @@ module states {
         // Create the Crosshair
         crosshair = new objects.Crosshair();
         game.addChild(crosshair);
-        crosshair.cache(stage.mouseX, stage.mouseY, crosshair.width, crosshair.height);
+        //crosshair.cache(stage.mouseX, stage.mouseY, crosshair.width, crosshair.height);
 
         // Instantiate the Beamweapon Manager
         beamWeapon = new managers.BeamWeapon();

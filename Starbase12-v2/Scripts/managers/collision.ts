@@ -133,6 +133,7 @@ module managers {
                             break;
                         case "ship":
                             this.playerAlive = false;
+                            battleSound.stop();
                             stage.removeChild(game);
                             game.removeAllChildren();
                             game.removeAllEventListeners();

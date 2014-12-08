@@ -5,51 +5,50 @@ var __extends = this.__extends || function (d, b) {
     __.prototype = b.prototype;
     d.prototype = new __();
 };
-// Explosion Object Class
+// Flame Object Class
 var objects;
 (function (objects) {
-    var Explosion = (function (_super) {
-        __extends(Explosion, _super);
+    var Flame = (function (_super) {
+        __extends(Flame, _super);
         // CONSTRUCTOR +++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        function Explosion(x, y) {
+        function Flame(x, y) {
             this._particle = new createjs.Bitmap(managers.Assets.loader.getResult("explosionParticle"));
             _super.call(this, this._particle.image);
             this.position = new createjs.Point(x, y);
             this.emitterType = createjs.ParticleEmitterType.Emit;
             this.emissionRate = 50;
             this.maxParticles = 500;
-            this.life = 590;
-            this.lifeVar = 380;
-            this.speed = 100;
+            this.life = 500;
+            this.lifeVar = 200;
+            this.speed = 200;
             this.speedVar = 30;
-            this.positionVarX = 0;
-            this.positionVarY = 0;
+            this.positionVarX = 15;
+            this.positionVarY = -20;
             this.accelerationX = 0;
             this.accelerationY = 0;
             this.radialAcceleration = 0;
             this.radialAccelerationVar = 0;
             this.tangentalAcceleration = 0;
             this.tangentalAccelerationVar = 0;
-            this.angle = 270;
-            this.angleVar = 360;
-            this.startSpin = 0;
-            this.startSpinVar = 0;
-            this.endSpin = null;
+            this.angle = -150;
+            this.angleVar = 15;
+            this.startSpin = 720;
+            this.startSpinVar = null;
+            this.endSpin = 0;
             this.endSpinVar = null;
-            this.startColor = [255, 0, 35];
-            this.startColorVar = [255, 125, 0];
-            this.startOpacity = 0.5;
-            this.endColor = [255, 255, 255];
+            this.startColor = [217, 51, 51];
+            this.startColorVar = [180, 50, 80];
+            this.startOpacity = 1;
+            this.endColor = [255, 0, 0];
             this.endColorVar = [0, 0, 0];
             this.endOpacity = 0;
-            this.startSize = 65;
-            this.startSizeVar = 33;
-            this.endSize = 0;
-            this.endSizeVar = 5;
-            this.duration = 1000;
+            this.startSize = 60;
+            this.startSizeVar = null;
+            this.endSize = 10;
+            this.endSizeVar = null;
         }
-        return Explosion;
+        return Flame;
     })(createjs.ParticleEmitter);
-    objects.Explosion = Explosion;
+    objects.Flame = Flame;
 })(objects || (objects = {}));
-//# sourceMappingURL=explosion.js.map
+//# sourceMappingURL=flame.js.map

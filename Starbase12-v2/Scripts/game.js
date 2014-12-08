@@ -18,6 +18,7 @@
 /// <reference path="objects/hud.ts" />
 /// <reference path="objects/crosshair.ts" />
 /// <reference path="objects/explosion.ts" />
+/// <reference path="objects/flame.ts" />
 /// <reference path="objects/label.ts" />
 /// <reference path="objects/shield.ts" />
 /// <reference path="objects/player.ts" />
@@ -29,6 +30,7 @@
 /// <reference path="objects/photon.ts" />
 /// <reference path="managers/klingon.ts" />
 /// <reference path="managers/particleexplosion.ts" />
+/// <reference path="managers/particleflame.ts" />
 /// <reference path="managers/beamweapon.ts" />
 /// <reference path="managers/collision.ts" />
 /// <reference path="states/gameover.ts" />
@@ -49,7 +51,9 @@ var hud;
 var crosshair;
 // Game Arrays
 var emitters = [];
+var flameBursts = [];
 var explosions = [];
+var flames = [];
 var gameTiles = [];
 var enemies = [];
 // Game Managers
@@ -57,6 +61,7 @@ var gameTile;
 var beamWeapon;
 var collision;
 var particleExplosion;
+var particleFlame;
 var klingon;
 // Game Container
 var game;
@@ -65,6 +70,10 @@ var currentState;
 var currentStateFunction;
 var gamePlaying = false;
 var startButton;
+// Game Music Variables
+var battleSound;
+var gameOverSound;
+var menuSound;
 // Preload Assets
 function preload() {
     managers.Assets.init();
