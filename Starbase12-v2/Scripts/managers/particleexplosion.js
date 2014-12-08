@@ -1,4 +1,4 @@
-﻿var managers;
+var managers;
 (function (managers) {
     var ParticleExplosion = (function () {
         // CONSTRUCTOR ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -15,7 +15,6 @@
                 }
             }
         };
-
         // Add a new explosion
         ParticleExplosion.prototype.addExplosion = function (x, y) {
             var explosion = new objects.Explosion(x, y);
@@ -25,7 +24,6 @@
             emitters.push(emitter);
             game.addChild(emitters[emitters.length - 1]);
         };
-
         // Destroy Method
         ParticleExplosion.prototype.destroy = function (explosionIndex) {
             explosions.splice(explosionIndex, 1);

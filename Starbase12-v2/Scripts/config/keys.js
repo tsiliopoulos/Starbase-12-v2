@@ -1,4 +1,4 @@
-﻿var keys;
+var keys;
 (function (keys) {
     // Keyboard values
     keys.LEFT = 37;

@@ -1,4 +1,4 @@
-﻿var __extends = this.__extends || function (d, b) {
+var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -12,7 +12,6 @@ var objects;
         // CONSTRUCTOR +++++++++++++++++++++++++++++++++++++++++++++++++++++
         function Starbase() {
             _super.call(this, "starbase");
-
             this.name = "starbase";
             this.init();
             this.showHealth();
@@ -30,18 +29,15 @@ var objects;
                     this.turnLeft();
                     break;
             }
-
             //this.calcHitArea(); // debug info
             this.healthUpdate();
             this.shield.update();
         };
-
         // remove the starbase object from the game
         Starbase.prototype.destroy = function () {
             this.shield.destroy();
             game.removeChild(this);
         };
-
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++++++
         // Initialize starbase properties
         Starbase.prototype.init = function () {
@@ -52,13 +48,13 @@ var objects;
             this.dy = 0;
             this.damage = config.STARBASE_DAMAGE;
         };
-
         // Rotate the Starbase in a random direction
         Starbase.prototype.randomRotation = function () {
             var turnProbability = Math.floor(Math.random() * 100 + 1);
             if (turnProbability > 50) {
                 this._turnDirection = config.CLOCKWISE;
-            } else {
+            }
+            else {
                 this._turnDirection = config.COUNTERCLOCKWISE;
             }
         };

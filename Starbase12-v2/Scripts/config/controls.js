@@ -1,4 +1,4 @@
-﻿var controls;
+var controls;
 (function (controls) {
     // Keeps track of state of player controls
     controls.FORWARD = false;

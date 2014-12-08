@@ -1,4 +1,4 @@
-﻿// Utility Method to assist with location debugging across various containers
+// Utility Method to assist with location debugging across various containers
 var utility;
 (function (utility) {
     function showLocation(container, displayObject) {
@@ -8,4 +8,4 @@ var utility;
     }
     utility.showLocation = showLocation;
 })(utility || (utility = {}));
-//# sourceMappingURL=showLocation.js.map
+//# sourceMappingURL=showlocation.js.map

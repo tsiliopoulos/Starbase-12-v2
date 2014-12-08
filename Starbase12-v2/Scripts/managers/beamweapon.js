@@ -1,4 +1,4 @@
-﻿// BeamWeapon Manager Class
+// BeamWeapon Manager Class
 var managers;
 (function (managers) {
     var BeamWeapon = (function () {
@@ -24,20 +24,16 @@ var managers;
             this._strafe = false;
             this._removePhaser();
         };
-
         // Update Phaser
         BeamWeapon.prototype.update = function () {
             this._checkPhaserStrafe();
             this._updateTracer();
             this._regeneratePhaser();
-
             this._checkDisruptorFire();
             this._updateDisruptor();
-
             this._checkPhotonFire();
             this._updatePhoton();
         };
-
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         // Create Phaser Tracer Objects
         BeamWeapon.prototype._createTracer = function () {
@@ -45,7 +41,6 @@ var managers;
             this.tracers.push(tracer);
             game.addChild(tracer);
         };
-
         // Update Tracer Position on screen and remove if tracer stops
         BeamWeapon.prototype._updateTracer = function () {
             for (var tracerNum = 0; tracerNum < this.tracers.length; tracerNum++) {
@@ -57,7 +52,6 @@ var managers;
                 }
             }
         };
-
         // Regenerate phaser energy over time
         BeamWeapon.prototype._regeneratePhaser = function () {
             hud.phaserEnergy = hud.phaserEnergy + 0.33;
@@ -65,7 +59,6 @@ var managers;
                 hud.phaserEnergy = 100;
             }
         };
-
         // Set phaser state to Strafing
         BeamWeapon.prototype._phaserStrafing = function () {
             // check to see if phaser sound is still playing
@@ -73,7 +66,6 @@ var managers;
                 this._strafe = true;
             }
         };
-
         // Fire Phaser and Play Sound
         BeamWeapon.prototype._phaserStart = function () {
             if ((collision.playerAlive) && (hud.phaserEnergy > 0)) {
@@ -83,19 +75,15 @@ var managers;
                 if (hud.phaserEnergy <= 0) {
                     hud.phaserEnergy = 0;
                 }
-
                 this._createTracer();
-
                 var phaser = new objects.Phaser();
                 this.phasers.push(phaser);
             }
         };
-
         // Check if player is firing and moving mouse
         BeamWeapon.prototype._checkPhaserStrafe = function () {
             if (this._strafe) {
                 this._createTracer();
-
                 var phaser = new objects.Phaser();
                 this._removePhaser();
                 this.phasers.push(phaser);
@@ -105,7 +93,6 @@ var managers;
                 }
             }
         };
-
         // Check if enemy is firing disruptor
         BeamWeapon.prototype._checkDisruptorFire = function () {
             // Ensure starbase or player is alive in order to fire disruptor
@@ -123,7 +110,6 @@ var managers;
                 this._disruptorNum++;
             }
         };
-
         // Update Disruptor
         BeamWeapon.prototype._updateDisruptor = function () {
             for (var Num = 0; Num < this.disruptors.length; Num++) {
@@ -135,7 +121,6 @@ var managers;
                 }
             }
         };
-
         // Check if photo has been fired
         BeamWeapon.prototype._checkPhotonFire = function () {
             if ((collision.playerAlive) && (player.photonFired) && (this._photonNum % 60 == 0)) {
@@ -150,7 +135,6 @@ var managers;
             }
             this._photonNum++;
         };
-
         // Update Photon
         BeamWeapon.prototype._updatePhoton = function () {
             for (var Num = 0; Num < this.photons.length; Num++) {
@@ -162,7 +146,6 @@ var managers;
                 }
             }
         };
-
         // Remove last Phaser
         BeamWeapon.prototype._removePhaser = function () {
             game.removeChild(this.phasers[this.phasers.length - 1]);

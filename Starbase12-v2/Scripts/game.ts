@@ -102,9 +102,11 @@ function handleProgress(event: ProgressEvent) {
 // Initialize Game
 function init(): void {
     managers.Assets.loadSprites();
+    // Remove loader bar
+    loaderBar.destroy();
 
     // Add Start Button after Loader is complete
-    startButton = new objects.Button(config.MIDDLE_X, 400, "startButton");
+    startButton = new objects.Button(config.MIDDLE_X, 525, "startButton");
     game.addChild(startButton);
 
     // Don't Start the game until startButton is pressed
@@ -148,21 +150,15 @@ function setupStats() {
 
 // Main Game Function
 function showStartScreen(): void {
-    var screenFont: string = "100px startrek";
     setupStats();
 
     // the Main object container
     game = new createjs.Container();
 
-    // Add Starbase 12 Label
-    var TitleLabel = new createjs.Text("Starbase 12", screenFont, config.FONT_COLOUR);
-    TitleLabel.regX = TitleLabel.getBounds().width * 0.5;
-    TitleLabel.regY = TitleLabel.getBounds().height * 0.5;
-    TitleLabel.x = config.MIDDLE_X;
-    TitleLabel.y = 120;
-    game.addChild(TitleLabel);
+    var introScreen = new createjs.Bitmap("assets/images/introScreen.png");
+    game.addChild(introScreen);
 
-    loaderBar = new objects.LoaderBar(config.MIDDLE_X, config.MIDDLE_Y, config.FONT_COLOUR, config.WHITE);
+    loaderBar = new objects.LoaderBar(config.MIDDLE_X, 525, config.FONT_COLOUR, config.WHITE);
     game.addChild(loaderBar);
 
     stage.addChild(game);

@@ -1,4 +1,4 @@
-﻿// Static Utility Class to calculate the distance between two points
+// Static Utility Class to calculate the distance between two points
 var utility;
 (function (utility) {
     function distance(p1, p2) {

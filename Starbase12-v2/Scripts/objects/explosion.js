@@ -1,4 +1,4 @@
-﻿/// <reference path="../managers/asset.ts" />
+/// <reference path="../managers/asset.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -18,7 +18,6 @@ var objects;
             this.emitterType = createjs.ParticleEmitterType.Emit;
             this.emissionRate = 50;
             this.maxParticles = 500;
-
             this.life = 590;
             this.lifeVar = 380;
             this.speed = 100;

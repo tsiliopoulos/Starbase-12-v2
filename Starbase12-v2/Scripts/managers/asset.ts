@@ -17,6 +17,7 @@
                 { id: "hudLS", src: "assets/images/hudLS.png" },
                 { id: "hudRS", src: "assets/images/hudRS.png" },
                 { id: "menuScreen", src: "assets/images/menuScreen.png" },
+                { id: "introScreen", src: "assets/images/introScreen.png" },
                 { id: "phaser", src: "assets/sounds/phaser.mp3" },
                 { id: "disruptor", src: "assets/sounds/disruptor.mp3" },
                 { id: "shield", src: "assets/sounds/shield.mp3" },

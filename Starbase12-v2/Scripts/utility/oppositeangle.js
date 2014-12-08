@@ -1,4 +1,4 @@
-﻿// Utility function to determine the opposite angle
+// Utility function to determine the opposite angle
 var utility;
 (function (utility) {
     function oppositeAngle(angle) {

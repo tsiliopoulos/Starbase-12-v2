@@ -12,7 +12,7 @@
     export var MIDDLE_Y: number = 300;
     export var BORDER: number = 31;
     export var LOADER_WIDTH: number = 400;
-    export var LOADER_HEIGHT: number = 40;
+    export var LOADER_HEIGHT: number = 60;
 
     // Tile Constants
     export var TILE_WIDTH: number = 146;
@@ -43,7 +43,7 @@
     export var PHOTON_NUM: number = 8;
     export var INTEGRITY: number = 100;
     export var ARC_COUNT: number = 4;
-    export var ENEMY_COUNT: number = 10;
+    export var ENEMY_COUNT: number = 1;
 
     // Colour Constants
     export var GREEN: string = "#0F0";

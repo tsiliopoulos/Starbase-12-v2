@@ -1,4 +1,4 @@
-﻿/// <reference path="../config/controls.ts" />
+/// <reference path="../config/controls.ts" />
 /// <reference path="../config/keys.ts" />
 /// <reference path="shield.ts" />
 var __extends = this.__extends || function (d, b) {
@@ -15,7 +15,6 @@ var objects;
         // CONSTRUCTOR +++++++++++++++++++++++++++++++++++++++++++++++++++++
         function Player() {
             _super.call(this, "ship");
-
             this.name = "ship";
             this._init();
             this._assignControls();
@@ -31,7 +30,6 @@ var objects;
             this.calcPosition();
             this.location.x = this.x;
             this.location.y = this.y;
-
             //this.calcHitArea(); // debug info
             this.target.x = stage.mouseX;
             this.target.y = stage.mouseY;
@@ -41,13 +39,11 @@ var objects;
             this.healthUpdate();
             this.shield.update();
         };
-
         // Remove Player Object
         Player.prototype.destroy = function () {
             this.shield.destroy();
             game.removeChild(this);
         };
-
         // PRIVATE METHODS ++++++++++++++++++++++++++++++++++++++++++++++++++
         // Initialize player properties
         Player.prototype._init = function () {
@@ -60,18 +56,15 @@ var objects;
             this.photonFired = false;
             this.damage = config.PLAYER_DAMAGE;
         };
-
         // Calculate the angle to the target
         Player.prototype._calculateTargetAngle = function () {
             this.dx = this.x - this.target.x;
             this.dy = this.y - this.target.y;
             this.dy *= -1;
-
             var radians = Math.atan2(this.dy, this.dx);
             this.targetAngle = radians * 180 / Math.PI;
             this.targetAngle += 180;
         };
-
         // Check if the target is within the front firing arc
         Player.prototype._checkFiringArc = function () {
             if (this.targetAngle > this.direction) {
@@ -84,13 +77,11 @@ var objects;
                 this._firingAngle = 0;
             }
         };
-
         // Bind key actions to player events
         Player.prototype._assignControls = function () {
             window.onkeydown = this._onControlDown;
             window.onkeyup = this._onControlUp;
         };
-
         // Switch statement to activate movement and rotation
         Player.prototype._onControlDown = function (event) {
             switch (event.keyCode) {
@@ -115,7 +106,6 @@ var objects;
                     break;
             }
         };
-
         // switch statement to reset controls
         Player.prototype._onControlUp = function (event) {
             switch (event.keyCode) {
@@ -140,40 +130,35 @@ var objects;
                     break;
             }
         };
-
         // Respond to player key presses
         Player.prototype._controlAction = function () {
             // Execute left turn
             if (controls.TURN_LEFT) {
                 this.turnLeft();
             }
-
             // Execute right turn
             if (controls.TURN_RIGHT) {
                 this.turnRight();
             }
-
             // Forward Movement
             if (controls.FORWARD) {
                 this.speed = config.PLAYER_FORWARD;
             }
-
             // Reverse Movement
             if (controls.REVERSE) {
                 this.speed = -config.PLAYER_REVERSE;
             }
-
             // Forward Stop
             if ((controls.FORWARD == false) && (controls.REVERSE == false)) {
                 this.speed = 0;
             }
         };
-
         // Check if photon torpedo was fired
         Player.prototype._checkPhoton = function () {
             if ((hud.photonNumber > 0) && (controls.PHOTON) && (this._firingAngle <= 30)) {
                 this.photonFired = true;
-            } else {
+            }
+            else {
                 this.photonFired = false;
             }
         };

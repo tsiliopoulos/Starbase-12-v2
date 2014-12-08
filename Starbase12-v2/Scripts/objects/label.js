@@ -1,4 +1,4 @@
-﻿/// <reference path="../managers/asset.ts" />
+/// <reference path="../managers/asset.ts" />
 var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -22,7 +22,6 @@ var objects;
         // Utility Method to change the default font size
         Label.prototype.fontSize = function (size) {
             var scale = size / this.getBounds().height;
-
             this.scaleX = scale;
             this.scaleY = scale;
         };

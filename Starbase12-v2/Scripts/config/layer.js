@@ -1,4 +1,4 @@
-﻿var layer;
+var layer;
 (function (layer) {
     // Game Layers
     layer.BACKGROUND = 0;

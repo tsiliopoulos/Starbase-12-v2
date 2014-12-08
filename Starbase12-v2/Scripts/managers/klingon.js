@@ -1,4 +1,4 @@
-﻿// Enemy Manager Class
+// Enemy Manager Class
 var managers;
 (function (managers) {
     var Klingon = (function () {
@@ -14,7 +14,6 @@ var managers;
                 enemies[count].updateCache();
             }
         };
-
         // Create new enemy ships
         Klingon.prototype.spawn = function () {
             for (var count = 0; count < config.ENEMY_COUNT; count++) {
@@ -23,7 +22,6 @@ var managers;
                 game.addChild(enemies[count].integrityLabel);
                 enemies[count].integrityLabel.shadow = new createjs.Shadow('#FFF', 2, 2, 8);
                 enemies[count].integrityLabel.filters = [colorFilter];
-
                 enemies[count].integrityLabel.cache(0, 0, enemies[count].integrityLabel.getBounds().width, enemies[count].integrityLabel.getBounds().height);
                 enemies[count].cache(0, 0, enemies[count].width, enemies[count].height);
                 gameTile.getLocation(enemies[count]);

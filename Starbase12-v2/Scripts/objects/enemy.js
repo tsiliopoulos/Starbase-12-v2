@@ -1,4 +1,4 @@
-﻿var __extends = this.__extends || function (d, b) {
+var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -28,24 +28,20 @@ var objects;
             this.shieldsDown();
             this.shieldsUp();
         };
-
         // Update Method
         Enemy.prototype.update = function () {
             this._turnToFaceTarget();
             this._fireDisruptor();
-
             //this.calcHitArea(); // debug hit area
             this.healthUpdate();
             this.shield.update();
             this._checkTargetAlive();
         };
-
         // Destroy Enemy
         Enemy.prototype.destroy = function () {
             game.removeChild(this);
             game.removeChild(this.shield);
         };
-
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++++++++
         // Initialize player properties
         Enemy.prototype._init = function () {
@@ -59,28 +55,25 @@ var objects;
             this.rateOfFire = Math.floor(Math.random() * 20 + 50);
             this.damage = config.KLINGON_DAMAGE;
         };
-
         // Calculate the angle to the target
         Enemy.prototype._calculateTargetAngle = function () {
             this.dx = this.x - this.target.x;
             this.dy = this.y - this.target.y;
             this.dy *= -1;
-
             var radians = Math.atan2(this.dy, this.dx);
             this.targetAngle = radians * 180 / Math.PI;
             this.targetAngle += 180;
         };
-
         // Select a Random Target
         Enemy.prototype._selectTarget = function () {
             var targetProbability = Math.floor(Math.random() * 100 + 1);
             if (targetProbability > 66) {
                 this.target = player;
-            } else {
+            }
+            else {
                 this.target = starbase;
             }
         };
-
         // Check to see if target is still alive
         Enemy.prototype._checkTargetAlive = function () {
             if (!collision.starbaseAlive) {
@@ -90,14 +83,11 @@ var objects;
                 this.target = starbase;
             }
         };
-
         // Turn to face the current target at the turn rate and fire
         Enemy.prototype._turnToFaceTarget = function () {
             this._calculateTargetAngle();
-
             var targetQuadrant = utility.Quadrant(this.targetAngle);
             var enemyQuadrant = utility.Quadrant(this.direction);
-
             if ((targetQuadrant == enemyQuadrant) || (enemyQuadrant == config.TOP_LEFT) || (enemyQuadrant == config.BOT_LEFT)) {
                 if (this.direction > this.targetAngle) {
                     this.turnRight();
@@ -110,34 +100,36 @@ var objects;
                 if (this.direction == this.targetAngle) {
                     this._firingAngle = 0;
                 }
-            } else {
+            }
+            else {
                 if (enemyQuadrant == config.TOP_RIGHT) {
                     if (targetQuadrant == config.BOT_RIGHT) {
                         this.turnRight();
                         this._firingAngle = this.direction - (360 - this.targetAngle);
-                    } else {
+                    }
+                    else {
                         this.turnLeft();
                         this._firingAngle = this.targetAngle - this.direction;
                     }
                 }
-
                 if (enemyQuadrant == config.BOT_RIGHT) {
                     if (targetQuadrant == config.TOP_RIGHT) {
                         this.turnLeft();
                         this._firingAngle = (this.targetAngle + 360) - this.direction;
-                    } else {
+                    }
+                    else {
                         this.turnRight();
                         this._firingAngle = this.direction - this.targetAngle;
                     }
                 }
             }
         };
-
         // If firing angle is less than 30 degrees then fire disruptors
         Enemy.prototype._fireDisruptor = function () {
             if (this._firingAngle <= 30) {
                 this.disruptorFire = true;
-            } else {
+            }
+            else {
                 this.disruptorFire = false;
             }
         };

@@ -1,4 +1,4 @@
-﻿var __extends = this.__extends || function (d, b) {
+var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -16,11 +16,9 @@ var objects;
             this.y = y;
             this._fillColour = fill;
             this._strokeColour = stroke;
-
             //this.scaleX = 0;
             this.regX = config.LOADER_WIDTH * 0.5;
             this.regY = config.LOADER_HEIGHT * 0.5;
-
             this._drawPercent();
         }
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -31,13 +29,11 @@ var objects;
             this._drawFill();
             this._updatePercent();
         };
-
         // Destroy Method
         LoaderBar.prototype.destroy = function () {
             game.removeChild(this);
             game.removeChild(this._percentLabel);
         };
-
         // PRIVATE METHODS
         // Draw the stroke for the loader bar
         LoaderBar.prototype._drawStroke = function () {
@@ -46,7 +42,6 @@ var objects;
             this.graphics.drawRoundRect(0, 0, config.LOADER_WIDTH, config.LOADER_HEIGHT, 20);
             this.graphics.endStroke();
         };
-
         // Draw the Fill for the loader bar
         LoaderBar.prototype._drawFill = function () {
             this.graphics.clear();
@@ -54,7 +49,6 @@ var objects;
             this.graphics.drawRoundRect(0, 0, config.LOADER_WIDTH * percentLoaded, config.LOADER_HEIGHT, 20);
             this.graphics.endFill();
         };
-
         // Draw the percent label for the loader bar
         LoaderBar.prototype._drawPercent = function () {
             this._percentLabel = new createjs.Text("0%", "46px startrek", config.BLACK);
@@ -63,7 +57,6 @@ var objects;
             this._percentLabel.x = this.x;
             this._percentLabel.y = this.y;
         };
-
         LoaderBar.prototype._updatePercent = function () {
             this._percentLabel.text = Math.floor(percentLoaded * 100).toString() + "%";
             game.addChild(this._percentLabel);

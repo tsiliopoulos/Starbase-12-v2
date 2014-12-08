@@ -1,4 +1,4 @@
-﻿var __extends = this.__extends || function (d, b) {
+var __extends = this.__extends || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
@@ -26,26 +26,22 @@ var objects;
             this.checkBounds();
             this._travelled = utility.distance(this._origin, this.location);
         };
-
         // Remove the photon
         Photon.prototype.destroy = function () {
             game.removeChild(this);
         };
-
         // PRIVATE METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         Photon.prototype._init = function () {
             this.x = player.x;
             this.y = player.y;
             this._origin.x = this.x;
             this._origin.y = this.y;
-
             this.dx = 0;
             this.dy = 0;
             this.direction = player.targetAngle;
             this.speed = config.PHOTON_SPEED;
             this._target.x = stage.mouseX;
             this._target.y = stage.mouseY;
-
             this.range = utility.distance(this._origin, this._target);
             this.damage = config.PHOTON_DAMAGE;
         };

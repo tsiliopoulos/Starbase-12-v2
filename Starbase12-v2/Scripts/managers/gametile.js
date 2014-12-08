@@ -1,4 +1,4 @@
-﻿// Game Tile Manager
+// Game Tile Manager
 var managers;
 (function (managers) {
     var GameTile = (function () {
@@ -18,11 +18,9 @@ var managers;
                 }
             }
         };
-
         // Get Location for game entity from Game Tile Array
         GameTile.prototype.getLocation = function (entity) {
             var TileLocation = Math.floor(Math.random() * gameTiles.length);
-
             entity.location.x = gameTiles[TileLocation].x + config.TILE_WIDTH * 0.5;
             entity.location.y = gameTiles[TileLocation].y + config.TILE_HEIGHT * 0.5;
             gameTiles.splice(TileLocation, 1);

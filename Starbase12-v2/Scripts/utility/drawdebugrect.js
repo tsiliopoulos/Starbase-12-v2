@@ -1,4 +1,4 @@
-﻿var utility;
+var utility;
 (function (utility) {
     function drawDebugRect(container, x, y, width, height) {
         var rectangle = new createjs.Graphics();

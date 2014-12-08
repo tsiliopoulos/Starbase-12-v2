@@ -1,4 +1,4 @@
-﻿var managers;
+var managers;
 (function (managers) {
     // Asset Manager Class
     var Assets = (function () {
@@ -15,6 +15,7 @@
                 { id: "hudLS", src: "assets/images/hudLS.png" },
                 { id: "hudRS", src: "assets/images/hudRS.png" },
                 { id: "menuScreen", src: "assets/images/menuScreen.png" },
+                { id: "introScreen", src: "assets/images/introScreen.png" },
                 { id: "phaser", src: "assets/sounds/phaser.mp3" },
                 { id: "disruptor", src: "assets/sounds/disruptor.mp3" },
                 { id: "shield", src: "assets/sounds/shield.mp3" },
@@ -23,7 +24,6 @@
                 { id: "hull", src: "assets/sounds/hullHit.mp3" },
                 { id: "redAlert", src: "assets/sounds/redAlert.mp3" }
             ];
-
             createjs.Sound.initializeDefaultPlugins();
             createjs.Sound.alternateExtensions = ["mp3"];
             this.loader = new createjs.LoadQueue(false);
@@ -31,7 +31,6 @@
             this.loader.loadManifest(assetManifest);
             this.loader.setUseXHR(false);
         };
-
         // Load Sprites and BitMap Fonts
         Assets.loadSprites = function () {
             // SpriteSheet Data Object
@@ -144,7 +143,6 @@
                     "tracer": [54]
                 }
             };
-
             // BitMap Font SpriteSheet Data object
             var fontData = {
                 "images": [this.loader.getResult("fontAtlas")],
@@ -293,7 +291,6 @@
                     "z": [69]
                 }
             };
-
             this.atlas = new createjs.SpriteSheet(objectData);
             this.bitMapFont = new createjs.SpriteSheet(fontData);
         };

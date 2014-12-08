@@ -1,4 +1,4 @@
-﻿var utility;
+var utility;
 (function (utility) {
     function getArcString(entityName, arcNum) {
         var finalString = entityName;

@@ -1,10 +1,10 @@
-﻿/// <reference path="../utility/distance.ts" />
+/// <reference path="../utility/distance.ts" />
 /// <reference path="beamweapon.ts" />
 // Collision Manager Class
 var managers;
 (function (managers) {
     var Collision = (function () {
-        // CONSTRUCTOR +++++++++++++++++++++++++++++++++++++++++++++++++++
+        // CONSTRUCTOR +++++++++++++++++++++++++++++++++++++++++++++++++++ 
         function Collision() {
             this.starbaseAlive = true;
             this.playerAlive = true;
@@ -15,20 +15,17 @@ var managers;
         Collision.prototype._shieldCollider = function (attackObject, defendObject) {
             var attackerPosition = attackObject.location;
             var shield = defendObject.shield;
-
             // Check if current Shield Arc is up
             if (utility.distance(attackerPosition, shield.location) < (shield.radius + attackObject.radius)) {
                 var incomingAngle = 0;
                 var attackerDirection = attackObject.direction;
                 var arcNum;
-
                 // Determine Angle of Attack (i.e. which shield is being attacked)
                 incomingAngle = utility.oppositeAngle(attackerDirection);
                 incomingAngle += defendObject.rotation;
                 incomingAngle %= 360;
                 arcNum = utility.Quadrant(incomingAngle);
                 var currentArc = shield.arcs[arcNum];
-
                 // check if shield arc is up
                 if ((currentArc.integrity > 0) && (currentArc.alpha > 0)) {
                     if (attackObject.name == "tracer") {
@@ -37,7 +34,8 @@ var managers;
                         if (defendObject.name != "starbase") {
                             hud.score += damage * 2;
                         }
-                    } else {
+                    }
+                    else {
                         var damage = attackObject.damage;
                         currentArc.integrity -= damage;
                         if ((attackObject.name = "photon") && (defendObject.name != "starbase")) {
@@ -47,12 +45,14 @@ var managers;
                     createjs.Sound.play("shield");
                     if (defendObject.name == "klingon") {
                         currentArc.alpha = currentArc.integrity * 0.01;
-                    } else {
+                    }
+                    else {
                         var arcString = utility.getArcString(defendObject.name, arcNum);
                         if ((currentArc.integrity > 35) && (currentArc.integrity < 61)) {
                             arcString += "Y";
                             currentArc.gotoAndPlay(arcString);
-                        } else if ((currentArc.integrity > 1) && (currentArc.integrity < 36)) {
+                        }
+                        else if ((currentArc.integrity > 1) && (currentArc.integrity < 36)) {
                             arcString += "R";
                             currentArc.gotoAndPlay(arcString);
                         }
@@ -64,7 +64,6 @@ var managers;
                 }
             }
         };
-
         // Method to determine if an attack object hits a defender's hull
         Collision.prototype._hullCollider = function (attackObject, defendObject, defenderIndex) {
             var attackerPosition = attackObject.location;
@@ -77,7 +76,8 @@ var managers;
                     if (defendObject.name != "starbase") {
                         hud.score += damage * 3;
                     }
-                } else {
+                }
+                else {
                     var damage = attackObject.damage;
                     defendObject.integrity -= damage;
                     if ((attackObject.name = "photon") && (defendObject.name != "starbase")) {
@@ -98,7 +98,6 @@ var managers;
                 if (defendObject.integrity < 1) {
                     // Display Particle Explosion
                     particleExplosion.addExplosion(defendObject.x, defendObject.y);
-
                     createjs.Sound.play("explosion");
                     defendObject.shieldsDown();
                     if (defendObject.name == "klingon") {
@@ -109,7 +108,6 @@ var managers;
                     }
                     game.removeChild(defendObject.integrityLabel);
                     game.removeChild(defendObject);
-
                     switch (defendObject.name) {
                         case "starbase":
                             this.starbaseAlive = false;
@@ -127,7 +125,6 @@ var managers;
                 attackObject.speed = 0;
             }
         };
-
         // PHASER COLLISIONS
         // Check for collisions between phasers and enemy shields
         Collision.prototype._checkPhaserAndEnemyShields = function () {
@@ -136,7 +133,6 @@ var managers;
                 this._shieldCollider(this._currentTracer, enemy);
             }
         };
-
         // Check for collisions between phasers and enemy ship
         Collision.prototype._checkPhaserAndEnemy = function () {
             var tracerPosition = this._currentTracer.location;
@@ -145,17 +141,14 @@ var managers;
                 this._hullCollider(this._currentTracer, enemy, enemyNum);
             }
         };
-
         // Check for collisions between phasers and starbase shields
         Collision.prototype._checkPhaserAndStarbaseShields = function () {
             this._shieldCollider(this._currentTracer, starbase);
         };
-
         // Check for collisions between phaser and starbase hull
         Collision.prototype._checkPhaserAndStarbase = function () {
             this._hullCollider(this._currentTracer, starbase, 0);
         };
-
         // PHOTON COLLISIONS
         // Check for collisions between photons and enemy shields
         Collision.prototype._checkPhotonAndEnemyShields = function () {
@@ -164,7 +157,6 @@ var managers;
                 this._shieldCollider(this._currentPhoton, enemy);
             }
         };
-
         // Check for collisions between photons and enemy ship
         Collision.prototype._checkPhotonAndEnemy = function () {
             var photonPosition = this._currentPhoton.location;
@@ -173,38 +165,31 @@ var managers;
                 this._hullCollider(this._currentPhoton, enemy, enemyNum);
             }
         };
-
         // Check for collisions between photons and starbase shields
         Collision.prototype._checkPhotonAndStarbaseShields = function () {
             this._shieldCollider(this._currentPhoton, starbase);
         };
-
         // Check for collisions between photons and starbase hull
         Collision.prototype._checkPhotonAndStarbase = function () {
             this._hullCollider(this._currentPhoton, starbase, 0);
         };
-
         // DISRUPTOR COLLISIONS
         // Collision between Disruptor and Starbase Shields
         Collision.prototype._checkDisruptorAndStarbaseShields = function () {
             this._shieldCollider(this._currentDisruptor, starbase);
         };
-
         // Check for collisions between Disruptor and Starbase Hull
         Collision.prototype._checkDisruptorAndStarbase = function () {
             this._hullCollider(this._currentDisruptor, starbase, 0);
         };
-
         // Collision between Disruptor and Starbase Shields
         Collision.prototype._checkDisruptorAndPlayerShields = function () {
             this._shieldCollider(this._currentDisruptor, player);
         };
-
         // Check for collisions between Disruptor and Starbase Hull
         Collision.prototype._checkDisruptorAndPlayer = function () {
             this._hullCollider(this._currentDisruptor, player, 0);
         };
-
         // PUBLIC METHODS ++++++++++++++++++++++++++++++++++++++++++++++++
         // Update Method
         Collision.prototype.update = function () {
@@ -220,7 +205,6 @@ var managers;
                     this._checkPhaserAndStarbase();
                 }
             }
-
             // Check Photon Collisions
             if (beamWeapon.photons.length > 0) {
                 this._currentPhoton = beamWeapon.photons[beamWeapon.photons.length - 1];
@@ -233,7 +217,6 @@ var managers;
                     this._checkPhotonAndStarbase();
                 }
             }
-
             // Check Disruptor Collisions
             if (beamWeapon.disruptors.length > 0) {
                 this._currentDisruptor = beamWeapon.disruptors[beamWeapon.disruptors.length - 1];
