@@ -10,7 +10,7 @@ module managers {
         public disruptorSound: createjs.SoundInstance;
         public photonSound: createjs.SoundInstance;
         public randomShot: number[] = [];
-        
+
 
         // PRIVATE PROPERTIES ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
         private _strafe: boolean = false;
@@ -34,14 +34,14 @@ module managers {
 
         // Update Phaser
         public update() {
-            this._checkPhaserStrafe();
+            if (gameControls) {
+                this._checkPhaserStrafe();
+                this._regeneratePhaser();
+                this._checkDisruptorFire();
+                this._checkPhotonFire();
+            }
             this._updateTracer();
-            this._regeneratePhaser();
-
-            this._checkDisruptorFire();
             this._updateDisruptor();
-
-            this._checkPhotonFire();
             this._updatePhoton();
         }
 
@@ -69,7 +69,7 @@ module managers {
 
         // Regenerate phaser energy over time
         private _regeneratePhaser() {
-            hud.phaserEnergy = hud.phaserEnergy + 0.33;
+            hud.phaserEnergy = hud.phaserEnergy + 0.5;
             if (hud.phaserEnergy > 100) {
                 hud.phaserEnergy = 100;
             }
@@ -77,27 +77,30 @@ module managers {
 
         // Set phaser state to Strafing
         private _phaserStrafing() {
-            // check to see if phaser sound is still playing
-            if ((collision.playerAlive) && (hud.phaserEnergy > 0) && (this.phaserSound.playState != createjs.Sound.PLAY_FINISHED)) {
-                this._strafe = true;
+            if (gameControls) {
+                // check to see if phaser sound is still playing
+                if ((playerAlive) && (hud.phaserEnergy > 0) && (this.phaserSound.playState != createjs.Sound.PLAY_FINISHED)) {
+                    this._strafe = true;
+                }
             }
         }
 
         // Fire Phaser and Play Sound
         private _phaserStart() {
+            if (gameControls) {
+                if ((playerAlive) && (hud.phaserEnergy > 0)) {
+                    this.phaserSound = createjs.Sound.play("phaser");
+                    this.phaserSound.on("complete", this.destroy, this);
+                    hud.phaserEnergy = Math.floor(hud.phaserEnergy * 0.95);
+                    if (hud.phaserEnergy <= 0) {
+                        hud.phaserEnergy = 0;
+                    }
 
-            if ((collision.playerAlive) && (hud.phaserEnergy > 0)) {
-                this.phaserSound = createjs.Sound.play("phaser");
-                this.phaserSound.on("complete", this.destroy, this);
-                hud.phaserEnergy = Math.floor(hud.phaserEnergy * 0.9);
-                if (hud.phaserEnergy <= 0) {
-                    hud.phaserEnergy = 0;
+                    this._createTracer();
+
+                    var phaser = new objects.Phaser();
+                    this.phasers.push(phaser);
                 }
-
-                this._createTracer();
-
-                var phaser = new objects.Phaser();
-                this.phasers.push(phaser);
             }
 
         }
@@ -121,7 +124,7 @@ module managers {
         // Check if enemy is firing disruptor
         private _checkDisruptorFire() {
             // Ensure starbase or player is alive in order to fire disruptor
-            if ((collision.starbaseAlive) || (collision.playerAlive)) {
+            if ((starbaseAlive) || (playerAlive)) {
                 for (var enemyNum = 0; enemyNum < enemies.length; enemyNum++) {
                     var enemy = enemies[enemyNum];
                     if ((enemy.disruptorFire) && (this._disruptorNum % enemy.rateOfFire == 0)) {
@@ -129,7 +132,7 @@ module managers {
                         var disruptor = new objects.Disruptor(enemy);
                         disruptor.rotation = enemy.rotation;
                         this.disruptors.push(disruptor);
-                        game.addChild(disruptor);
+                        game.addChildAt(disruptor,layer.DISRUPTOR);
                     }
                 }
                 this._disruptorNum++;
@@ -150,11 +153,11 @@ module managers {
 
         // Check if photo has been fired
         private _checkPhotonFire() {
-            if ((collision.playerAlive) && (player.photonFired) && (this._photonNum % 60 == 0)) {
+            if ((playerAlive) && (player.photonFired) && (this._photonNum % 60 == 0)) {
                 this.photonSound = createjs.Sound.play("photon");
                 var photon = new objects.Photon();
                 this.photons.push(photon);
-                game.addChild(photon);
+                game.addChildAt(photon, layer.PHOTON);
                 hud.photonNumber--;
                 if (hud.photonNumber < 0) {
                     hud.photonNumber = 0;

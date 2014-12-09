@@ -1,7 +1,6 @@
 ﻿module states {
     export var playButton: objects.Button;
     export var instructionsButton: objects.Button;
-    var soundtrack: createjs.SoundInstance;
 
     // Button Event Handlers
     export function instructionsButtonClicked(event: MouseEvent) {

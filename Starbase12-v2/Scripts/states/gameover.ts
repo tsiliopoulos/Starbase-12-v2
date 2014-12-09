@@ -6,6 +6,8 @@
 
     // Restart Game when Try Again Button is clicked
     export function playAgainClicked(event: MouseEvent) {
+        gameLevel = 1;
+        starbaseAlive = false;
         gameOverSound.stop();
         stage.removeChild(game);
         game.removeAllChildren();

@@ -2,7 +2,6 @@ var states;
 (function (states) {
     states.playButton;
     states.instructionsButton;
-    var soundtrack;
     // Button Event Handlers
     function instructionsButtonClicked(event) {
         menuSound.stop();

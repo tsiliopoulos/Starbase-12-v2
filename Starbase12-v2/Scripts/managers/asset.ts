@@ -29,7 +29,19 @@
                 { id: "redAlert", src: "assets/sounds/redAlert.mp3" },
                 { id: "menuMusic", src: "assets/sounds/menu.mp3" },
                 { id: "battleMusic", src: "assets/sounds/battle.mp3" },
-                { id: "gameOverMusic", src: "assets/sounds/gameover.mp3" }
+                { id: "gameOverMusic", src: "assets/sounds/gameover.mp3" },
+                { id: "sector", src: "assets/sounds/enteringsector.mp3" },
+                { id: "zero", src: "assets/sounds/zero.mp3" },
+                { id: "1", src: "assets/sounds/1.mp3" },
+                { id: "2", src: "assets/sounds/2.mp3" },
+                { id: "3", src: "assets/sounds/3.mp3" },
+                { id: "4", src: "assets/sounds/4.mp3" },
+                { id: "5", src: "assets/sounds/5.mp3" },
+                { id: "6", src: "assets/sounds/6.mp3" },
+                { id: "7", src: "assets/sounds/7.mp3" },
+                { id: "8", src: "assets/sounds/8.mp3" },
+                { id: "9", src: "assets/sounds/9.mp3" },
+                { id: "point", src: "assets/sounds/point.mp3" }
             ];
 
             createjs.Sound.initializeDefaultPlugins();

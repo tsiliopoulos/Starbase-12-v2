@@ -12,6 +12,7 @@
 /// <reference path="utility/textcolour.ts" />
 /// <reference path="utility/quadrant.ts" />
 /// <reference path="utility/oppositeangle.ts" />
+/// <reference path="utility/speech.ts" />
 /// <reference path="interfaces/iobject.ts" />
 /// <reference path="objects/gameobject.ts" />
 /// <reference path="objects/button.ts" />
@@ -70,6 +71,13 @@ var currentState;
 var currentStateFunction;
 var gamePlaying = false;
 var startButton;
+// Game Level Variables
+var gameLevel = 1;
+var levelUp = true;
+var starbaseAlive = true;
+var klingonsAlive = true;
+var playerAlive = true;
+var gameControls = false;
 // Game Music Variables
 var battleSound;
 var gameOverSound;
@@ -108,7 +116,6 @@ function init() {
         game.removeAllChildren();
         game.removeAllEventListeners();
         currentState = config.MENU_STATE;
-        gamePlaying = true;
         changeState(currentState);
     });
 }

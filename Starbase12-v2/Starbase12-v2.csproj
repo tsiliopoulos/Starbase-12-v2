@@ -149,13 +149,25 @@
     <Content Include="assets\images\startbaseTopRightYellow.png" />
     <Content Include="assets\images\startbaseYellow.png" />
     <Content Include="assets\images\startButton.png" />
+    <Content Include="assets\sounds\zero.mp3" />
+    <Content Include="assets\sounds\1.mp3" />
+    <Content Include="assets\sounds\2.mp3" />
+    <Content Include="assets\sounds\3.mp3" />
+    <Content Include="assets\sounds\4.mp3" />
+    <Content Include="assets\sounds\5.mp3" />
+    <Content Include="assets\sounds\6.mp3" />
+    <Content Include="assets\sounds\7.mp3" />
+    <Content Include="assets\sounds\8.mp3" />
+    <Content Include="assets\sounds\9.mp3" />
     <Content Include="assets\sounds\battle.mp3" />
     <Content Include="assets\sounds\disruptor.mp3" />
+    <Content Include="assets\sounds\enteringsector.mp3" />
     <Content Include="assets\sounds\gameover.mp3" />
     <Content Include="assets\sounds\hullHit.mp3" />
     <Content Include="assets\sounds\menu.mp3" />
     <Content Include="assets\sounds\phaser.mp3" />
     <Content Include="assets\sounds\photon.mp3" />
+    <Content Include="assets\sounds\point.mp3" />
     <Content Include="assets\sounds\redAlert.mp3" />
     <Content Include="assets\sounds\shield.mp3" />
     <Content Include="assets\sounds\smallexplosion.mp3" />
@@ -238,6 +250,7 @@
     <TypeScriptCompile Include="Scripts\utility\oppositeangle.ts" />
     <TypeScriptCompile Include="Scripts\utility\quadrant.ts" />
     <TypeScriptCompile Include="Scripts\utility\showLocation.ts" />
+    <TypeScriptCompile Include="Scripts\utility\speech.ts" />
     <TypeScriptCompile Include="Scripts\utility\textcolour.ts" />
   </ItemGroup>
   <PropertyGroup>

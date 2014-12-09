@@ -6,6 +6,8 @@ var states;
     states.GameOverState = GameOverState;
     // Restart Game when Try Again Button is clicked
     function playAgainClicked(event) {
+        gameLevel = 1;
+        starbaseAlive = false;
         gameOverSound.stop();
         stage.removeChild(game);
         game.removeAllChildren();

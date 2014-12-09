@@ -33,6 +33,12 @@ var objects;
             this.healthUpdate();
             this.shield.update();
         };
+        // Reset Starbase
+        Starbase.prototype.reset = function () {
+            this.init;
+            this.shieldsDown();
+            this.shieldsUp();
+        };
         // remove the starbase object from the game
         Starbase.prototype.destroy = function () {
             this.shield.destroy();

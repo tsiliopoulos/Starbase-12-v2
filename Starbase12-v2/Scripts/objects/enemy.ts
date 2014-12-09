@@ -35,8 +35,10 @@
 
         // Update Method
         public update() {
-            this._turnToFaceTarget();
-            this._fireDisruptor();
+            if (gameControls) {
+                this._turnToFaceTarget();
+                this._fireDisruptor();
+            }
             //this.calcHitArea(); // debug hit area
             this.healthUpdate();
             this.shield.update();
@@ -88,10 +90,10 @@
 
         // Check to see if target is still alive
         private _checkTargetAlive() {
-            if (!collision.starbaseAlive) {
+            if (!starbaseAlive) {
                 this.target = player;
             }
-            if (!collision.playerAlive) {
+            if (!playerAlive) {
                 this.target = starbase;
             }
 

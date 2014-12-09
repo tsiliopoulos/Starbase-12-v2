@@ -30,8 +30,10 @@ var objects;
         };
         // Update Method
         Enemy.prototype.update = function () {
-            this._turnToFaceTarget();
-            this._fireDisruptor();
+            if (gameControls) {
+                this._turnToFaceTarget();
+                this._fireDisruptor();
+            }
             //this.calcHitArea(); // debug hit area
             this.healthUpdate();
             this.shield.update();
@@ -76,10 +78,10 @@ var objects;
         };
         // Check to see if target is still alive
         Enemy.prototype._checkTargetAlive = function () {
-            if (!collision.starbaseAlive) {
+            if (!starbaseAlive) {
                 this.target = player;
             }
-            if (!collision.playerAlive) {
+            if (!playerAlive) {
                 this.target = starbase;
             }
         };

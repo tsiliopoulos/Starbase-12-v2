@@ -24,8 +24,10 @@ var objects;
         // PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++++++++++++++
         // Update player position and condition on screen
         Player.prototype.update = function () {
-            this._controlAction();
-            this._checkPhoton();
+            if (gameControls) {
+                this._controlAction();
+                this._checkPhoton();
+            }
             this.calcVector();
             this.calcPosition();
             this.location.x = this.x;

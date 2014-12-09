@@ -43,7 +43,7 @@
     export var PHOTON_NUM: number = 8;
     export var INTEGRITY: number = 100;
     export var ARC_COUNT: number = 4;
-    export var ENEMY_COUNT: number = 1;
+    export var ENEMY_COUNT: number = 2;
 
     // Colour Constants
     export var GREEN: string = "#0F0";
@@ -72,7 +72,7 @@
     // Turn Rate Constants
     export var KLINGON_TURN_RATE: number = 0.6;
     export var STARBASE_TURN_RATE: number = 0.1;
-    export var PLAYER_TURN_RATE: number = 1;
+    export var PLAYER_TURN_RATE: number = 1.2;
 
     // State Constants
     export var MENU_STATE: number = 0;

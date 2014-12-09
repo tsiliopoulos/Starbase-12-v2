@@ -32,6 +32,13 @@ module objects {
             this.shield.update();
         }
 
+        // Reset Starbase
+        public reset() {
+            this.init;
+            this.shieldsDown();
+            this.shieldsUp();
+        }
+
         // remove the starbase object from the game
         public destroy() {
             this.shield.destroy();

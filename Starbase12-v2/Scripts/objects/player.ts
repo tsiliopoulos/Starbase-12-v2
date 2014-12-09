@@ -28,8 +28,10 @@ module objects {
 
         // Update player position and condition on screen
         public update() {
-            this._controlAction();
-            this._checkPhoton();
+            if (gameControls) {
+                this._controlAction();
+                this._checkPhoton();
+            }
             this.calcVector();
             this.calcPosition();
             this.location.x = this.x;
